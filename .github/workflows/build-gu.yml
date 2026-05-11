@@ -303,11 +303,13 @@ jobs:
       run: |
         echo "Restoring packages for runtime: ${{ matrix.runtime }}"
         if [[ "${{ matrix.runtime }}" == "android" ]]; then
-          dotnet restore osu.Android/osu.Android.csproj \
+          cd osu.Android
+          dotnet restore osu.Android.csproj \
             --verbosity normal \
             --configfile nuget.config \
             --no-cache \
             --force
+          cd ..
         else
           dotnet restore osu.Desktop/osu.Desktop.csproj \
             --runtime ${{ matrix.runtime }} \
