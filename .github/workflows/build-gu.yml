@@ -306,7 +306,7 @@ jobs:
           cd osu.Android
           dotnet restore osu.Android.csproj \
             --verbosity normal \
-            --configfile nuget.config \
+            --configfile ../nuget.config \
             --no-cache \
             --force
           cd ..
