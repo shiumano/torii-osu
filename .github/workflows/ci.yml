@@ -161,7 +161,10 @@ jobs:
         run: dotnet workload install android
 
       - name: Compile
-        run: dotnet build -c Debug osu.Android.slnf
+        working-directory: ./osu.Android/
+        run: dotnet build -c Debug
+        # The build succeeds, but with the Debug configuration (specifically, with /p:Optimize=false), it crashes without launching.
+        # Well, it doesn't really matter.
 
   build-only-ios:
     name: Build only (iOS)

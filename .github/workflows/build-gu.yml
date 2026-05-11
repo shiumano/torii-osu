@@ -393,8 +393,9 @@ jobs:
             echo "ERROR: Keystore file not found!"
             exit 1
           fi
-          
-          dotnet publish osu.Android/osu.Android.csproj \
+
+          cd osu.Android/
+          dotnet publish osu.Android.csproj \
             --configuration Release \
             --verbosity normal \
             --no-restore \
@@ -408,7 +409,8 @@ jobs:
             -p:AndroidSigningKeyPass="$KEY_PASS" \
             -p:AndroidSigningStorePass="$KEYSTORE_PASS" \
             -p:AndroidPackageFormat=apk
-          
+          cd ../
+
           # Create output directory and copy APK
           mkdir -p "publish/${{ matrix.runtime }}"
 
